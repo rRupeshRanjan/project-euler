@@ -1,10 +1,15 @@
 package com.project.euler;
 
+import java.util.Calendar;
+
 public class Q11_20 {
     public static void main(String[] args) {
         System.out.println("Q11: " + problem11());
         System.out.println("Q12: " + problem12());
         System.out.println("Q13: " + problem13());
+        System.out.println("Q15: " + problem15());
+        System.out.println("Q16: " + problem16());
+        System.out.println("Q19: " + problem19());
     }
 
     private static int problem11() {
@@ -194,4 +199,56 @@ public class Q11_20 {
         return sb.reverse().substring(0,10);
     }
 
+    private static long problem15() {
+        int row = 20, col = 20;
+        long[][] dp = new long[row+1][col+1];
+
+        for(int i=0; i<=row; i++) {
+            for(int j=0; j<=col; j++) {
+                if(i*j==0)
+                    dp[i][j] = 1;
+                else
+                    dp[i][j] += dp[i-1][j] + dp[i][j-1];
+            }
+        }
+
+        return dp[row][col];
+    }
+
+    private static int problem16() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(1);
+
+        for(int i=0; i<1000; i++) {
+            int carry = 0;
+            StringBuilder sb2 = new StringBuilder();
+            for(int j=0; j<sb.length(); j++) {
+                int temp = carry + Character.getNumericValue(sb.charAt(j))*2;
+                sb2.append(temp%10);
+                carry = temp/10;
+            }
+            if(carry!=0) sb2.append(carry);
+            sb = sb2;
+        }
+
+        return sb.toString()
+                .chars()
+                .map(Character::getNumericValue)
+                .sum();
+    }
+
+    private static int problem19() {
+        int sundays = 0;
+        Calendar cal = Calendar.getInstance();
+        for (int year = 1901; year <= 2000; year++) {
+            for (int month = 1; month <= 12; month++) {
+                cal.set(year, month, 1);
+                if (cal.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
+                    sundays++;
+                }
+            }
+        }
+
+        return sundays;
+    }
 }
