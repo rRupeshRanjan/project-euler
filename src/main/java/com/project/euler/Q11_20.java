@@ -10,6 +10,8 @@ public class Q11_20 {
         System.out.println("Q15: " + problem15());
         System.out.println("Q16: " + problem16());
         System.out.println("Q19: " + problem19());
+        System.out.println("Q20: " + problem20());
+
     }
 
     private static int problem11() {
@@ -220,15 +222,7 @@ public class Q11_20 {
         sb.append(1);
 
         for(int i=0; i<1000; i++) {
-            int carry = 0;
-            StringBuilder sb2 = new StringBuilder();
-            for(int j=0; j<sb.length(); j++) {
-                int temp = carry + Character.getNumericValue(sb.charAt(j))*2;
-                sb2.append(temp%10);
-                carry = temp/10;
-            }
-            if(carry!=0) sb2.append(carry);
-            sb = sb2;
+            sb = multiplyByDigit(sb, 2);
         }
 
         return sb.toString()
@@ -250,5 +244,71 @@ public class Q11_20 {
         }
 
         return sundays;
+    }
+
+    private static int problem20() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(1);
+
+        for(int i=1; i<=99; i++) {
+            StringBuilder sb2;
+            sb2 = multiplyByDigit(sb, i%10);
+            if(i>=10)
+                sb2 = sumDigits(sb2, multiplyByDigit(sb, i/10).reverse().append(0).reverse());
+            sb = sb2;
+        }
+
+        return sb.toString()
+                .chars()
+                .map(Character::getNumericValue)
+                .sum();
+    }
+
+    private static StringBuilder multiplyByDigit(StringBuilder sb, int i) {
+        int carry = 0;
+        StringBuilder sb2 = new StringBuilder();
+        for(int j=0; j<sb.length(); j++) {
+            int temp = carry + Character.getNumericValue(sb.charAt(j))*i;
+            sb2.append(temp%10);
+            carry = temp/10;
+        }
+        if(carry!=0) sb2.append(carry);
+
+        return sb2;
+    }
+
+    private static StringBuilder sumDigits(StringBuilder sb, StringBuilder sb2) {
+        int a = sb.length();
+        int b = sb2.length();
+
+        StringBuilder sb3 = new StringBuilder();
+
+        int i=0, j=0, carry = 0;
+        while(i<a && j<b) {
+            int temp = carry +Character.getNumericValue(sb.charAt(i++)) +
+                    Character.getNumericValue(sb2.charAt(j++));
+            carry = temp/10;
+            sb3.append(temp%10);
+        }
+
+        if(i==a) {
+            while(j<b) {
+                int temp = carry + Character.getNumericValue(sb2.charAt(j++));
+                carry = temp/10;
+                sb3.append(temp%10);
+            }
+        }
+
+        if(j==b) {
+            while(i<a) {
+                int temp = carry + Character.getNumericValue(sb.charAt(i++));
+                carry = temp/10;
+                sb3.append(temp%10);
+            }
+        }
+
+        if(carry!=0) sb3.append(carry);
+
+        return sb3;
     }
 }
