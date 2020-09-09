@@ -1,8 +1,11 @@
 package com.project.euler;
 
+import com.project.euler.utils.Utility;
+
 import java.util.Calendar;
 
 public class Q11_20 {
+
     public static void main(String[] args) {
         System.out.println("Q11: " + problem11());
         System.out.println("Q12: " + problem12());
@@ -12,6 +15,7 @@ public class Q11_20 {
         System.out.println("Q19: " + problem19());
         System.out.println("Q20: " + problem20());
 
+        //TODO: problem 18
     }
 
     private static int problem11() {
@@ -222,7 +226,7 @@ public class Q11_20 {
         sb.append(1);
 
         for(int i=0; i<1000; i++) {
-            sb = multiplyByDigit(sb, 2);
+            sb = Utility.multiplyByDigit(sb, 2);
         }
 
         return sb.toString()
@@ -252,9 +256,9 @@ public class Q11_20 {
 
         for(int i=1; i<=99; i++) {
             StringBuilder sb2;
-            sb2 = multiplyByDigit(sb, i%10);
+            sb2 = Utility.multiplyByDigit(sb, i%10);
             if(i>=10)
-                sb2 = sumDigits(sb2, multiplyByDigit(sb, i/10).reverse().append(0).reverse());
+                sb2 = Utility.sumDigits(sb2, Utility.multiplyByDigit(sb, i/10).reverse().append(0).reverse());
             sb = sb2;
         }
 
@@ -262,53 +266,5 @@ public class Q11_20 {
                 .chars()
                 .map(Character::getNumericValue)
                 .sum();
-    }
-
-    private static StringBuilder multiplyByDigit(StringBuilder sb, int i) {
-        int carry = 0;
-        StringBuilder sb2 = new StringBuilder();
-        for(int j=0; j<sb.length(); j++) {
-            int temp = carry + Character.getNumericValue(sb.charAt(j))*i;
-            sb2.append(temp%10);
-            carry = temp/10;
-        }
-        if(carry!=0) sb2.append(carry);
-
-        return sb2;
-    }
-
-    private static StringBuilder sumDigits(StringBuilder sb, StringBuilder sb2) {
-        int a = sb.length();
-        int b = sb2.length();
-
-        StringBuilder sb3 = new StringBuilder();
-
-        int i=0, j=0, carry = 0;
-        while(i<a && j<b) {
-            int temp = carry +Character.getNumericValue(sb.charAt(i++)) +
-                    Character.getNumericValue(sb2.charAt(j++));
-            carry = temp/10;
-            sb3.append(temp%10);
-        }
-
-        if(i==a) {
-            while(j<b) {
-                int temp = carry + Character.getNumericValue(sb2.charAt(j++));
-                carry = temp/10;
-                sb3.append(temp%10);
-            }
-        }
-
-        if(j==b) {
-            while(i<a) {
-                int temp = carry + Character.getNumericValue(sb.charAt(i++));
-                carry = temp/10;
-                sb3.append(temp%10);
-            }
-        }
-
-        if(carry!=0) sb3.append(carry);
-
-        return sb3;
     }
 }
