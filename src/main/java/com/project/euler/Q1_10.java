@@ -1,6 +1,6 @@
 package com.project.euler;
 
-import java.util.Arrays;
+import com.project.euler.utils.Utility;
 
 public class Q1_10 {
     public static void main(String[] args) {
@@ -96,7 +96,7 @@ public class Q1_10 {
 
     private static int problem7() {
         int count = 0, max_size = 105000;
-        boolean[] primes = getPrimes(max_size);
+        boolean[] primes = Utility.getPrimes(max_size);
 
         for(int i=2; i<max_size; i++) {
             if(primes[i]) count++;
@@ -133,7 +133,7 @@ public class Q1_10 {
 
     private static long problem10() {
         int max_size = 2000000;
-        boolean[] primes = getPrimes(max_size);
+        boolean[] primes = Utility.getPrimes(max_size);
 
         long sum = 0;
         for(int i=2; i<max_size; i++) {
@@ -141,18 +141,5 @@ public class Q1_10 {
         }
 
         return sum;
-    }
-
-    private static boolean[] getPrimes(int max_size) {
-        boolean[] primes = new boolean[max_size];
-        Arrays.fill(primes, true);
-
-        for (int i = 2; i * i < max_size; i++) {
-            if (primes[i]) {
-                for (int j = i * i; j < max_size; j += i)
-                    primes[j] = false;
-            }
-        }
-        return primes;
     }
 }

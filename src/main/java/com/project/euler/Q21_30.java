@@ -17,7 +17,8 @@ public class Q21_30 {
         System.out.println("Q22: " + q21_30.problem22());
         System.out.println("Q25: " + problem25());
         System.out.println("Q26: " + problem26());
-
+        System.out.println("Q28: " + problem28());
+        System.out.println("Q30: " + problem30());
     }
 
     private static int problem21() {
@@ -49,7 +50,7 @@ public class Q21_30 {
 
     private long problem22() throws IOException {
         InputStream resource = getClass().getClassLoader().getResourceAsStream("p022_names.txt");
-        String[] input = readFromInputStream(resource).replace("\"","").split(",");
+        String[] input = readFromInputStream(resource).replace("\"", "").split(",");
         Arrays.sort(input);
 
         long sum = 0;
@@ -102,6 +103,40 @@ public class Q21_30 {
         return maxD;
     }
 
+    private static int problem28() {
+        int sum = 1, curr = 1, inc = 2, size = 1001;
 
+        for(int i = 1; i <= size / 2; i++) {
+            for(int j = 1; j <= 4; j++) {
+                curr += inc;
+                sum += curr;
+            }
+            inc += 2;
+        }
 
+        return sum;
+    }
+
+    private static int problem30() {
+        int[] powers = new int[10];
+        for(int i=0; i<10; i++)
+            powers[i] = (int) Math.pow(i, 5);
+
+        int sum = 0;
+        for(int i=10; i<=354294; i++) {
+            if(i == powSum(i, powers)) sum += i;
+        }
+
+        return sum;
+    }
+
+    private static int powSum(int num, int[] powers) {
+        int sum = 0;
+        while(num > 0) {
+            sum += powers[num%10];
+            num /= 10;
+        }
+
+        return sum;
+    }
 }
