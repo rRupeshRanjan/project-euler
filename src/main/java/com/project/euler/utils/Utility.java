@@ -89,4 +89,50 @@ public class Utility {
 
         return sb3;
     }
+
+    // check if string is palindrome
+    public static boolean isStringPalindrome(String s) {
+        int start = 0, end = s.length()-1;
+        while (start < end) {
+            if(s.charAt(start++) != s.charAt(end--))
+                return false;
+        }
+
+        return true;
+    }
+
+    // check if a integer is palindrome
+    public static boolean isPalindrome(int num) {
+        return isStringPalindrome(String.valueOf(num));
+    }
+
+    // get binary conversion of a integer
+    public static String convertToBinary(int num) {
+        StringBuilder sb = new StringBuilder();
+        while(num > 0) {
+            sb.append(num % 2);
+            num /= 2;
+        }
+
+        return sb.reverse().toString();
+    }
+
+    // check if 1 to 9 are all present in string
+    private static boolean isPanDigital(String s) {
+        int[] count = new int[10];
+        for(char ch: s.toCharArray()) {
+            count[ch-'0']++;
+        }
+
+        for(int i=1; i<10; i++) {
+            if (count[i] == 0) return false;
+        }
+
+        return true;
+    }
+
+    // check if 1 to 9 are all present in long number
+    public static boolean isPanDigital(long l) {
+        return isPanDigital(String.valueOf(l));
+    }
 }
