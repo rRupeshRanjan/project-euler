@@ -2,9 +2,7 @@ package com.project.euler;
 
 import com.project.euler.utils.Utility;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 public class Q31_40 {
@@ -16,6 +14,7 @@ public class Q31_40 {
         System.out.println("Q37: " + question37());
         System.out.println("Q38: " + question38());
         System.out.println("Q39: " + question39());
+        System.out.println("Q40: " + question40());
     }
 
     private static int question31() {
@@ -91,7 +90,7 @@ public class Q31_40 {
         long result = Long.MIN_VALUE;
         for(int i=9487; i>=9234; i--) {
             int num = 100002 * i;
-            if(Utility.isPanDigital(num)) {
+            if(Utility.isPanDigital(num, 9)) {
                 result = Math.max(result, num);
             }
         }
@@ -114,6 +113,22 @@ public class Q31_40 {
         }
 
         return maxP;
+    }
+
+    private static int question40() {
+        StringBuilder sb = new StringBuilder();
+        int i = 1;
+        while (sb.length() <= 1000000) {
+            sb.append(i++);
+        }
+
+        return Character.getNumericValue(sb.charAt(0)) *
+                Character.getNumericValue(sb.charAt(9)) *
+                Character.getNumericValue(sb.charAt(99)) *
+                Character.getNumericValue(sb.charAt(999)) *
+                Character.getNumericValue(sb.charAt(9999)) *
+                Character.getNumericValue(sb.charAt(99999)) *
+                Character.getNumericValue(sb.charAt(999999));
     }
 
     private static boolean truncatedPrime(int i, boolean[] primes) {

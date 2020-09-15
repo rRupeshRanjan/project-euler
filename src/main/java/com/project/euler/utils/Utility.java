@@ -1,12 +1,10 @@
 package com.project.euler.utils;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Utility {
 
-    // prime numbers until max_size valued element
+    // generate boolean array of prime numbers until max_size valued element
     public static boolean[] getPrimes(int max_size) {
         boolean[] primes = new boolean[max_size];
         Arrays.fill(primes, true);
@@ -118,21 +116,53 @@ public class Utility {
     }
 
     // check if 1 to 9 are all present in string
-    private static boolean isPanDigital(String s) {
-        int[] count = new int[10];
+    private static boolean isPanDigital(String s, int limit) {
+        int[] count = new int[limit+1];
         for(char ch: s.toCharArray()) {
             count[ch-'0']++;
         }
 
-        for(int i=1; i<10; i++) {
+        for(int i=1; i<=limit; i++) {
             if (count[i] == 0) return false;
         }
 
         return true;
     }
 
-    // check if 1 to 9 are all present in long number
-    public static boolean isPanDigital(long l) {
-        return isPanDigital(String.valueOf(l));
+    // check if 1 to limit are all present in long number ( 1 < limit <=9 )
+    public static boolean isPanDigital(long l, int limit) {
+        if(String.valueOf(l).contains("0"))
+            return false;
+        return isPanDigital(String.valueOf(l), limit);
+    }
+
+    // check if a number is prime
+    public static boolean isPrime(int num) {
+        for(int i=2; i<Math.sqrt(num); i++) {
+            if(num%i ==0) return false;
+        }
+        return true;
+    }
+
+    // Generate all permutations of given entries in nums
+    public static List<Integer> generatePermutations(int[] nums) {
+        List<Integer> permutations = new ArrayList<>();
+        generatePermutationsHelper(nums, permutations, new StringBuilder());
+        return permutations;
+    }
+
+    private static void generatePermutationsHelper(int[] nums, List<Integer> permutations, StringBuilder sb) {
+        if(sb.length()==nums.length) {
+            permutations.add(Integer.parseInt(sb.toString()));
+            return;
+        }
+
+        for (int num : nums) {
+            if (sb.indexOf(String.valueOf(num)) == -1) {
+                sb.append(num);
+                generatePermutationsHelper(nums, permutations, sb);
+                sb.deleteCharAt(sb.length() - 1);
+            }
+        }
     }
 }
