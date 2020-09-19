@@ -1,8 +1,24 @@
 package com.project.euler.utils;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.*;
 
 public class Utility {
+
+    public String readFromInputStream(String filename) throws IOException {
+        InputStream inputStream = getClass().getClassLoader().getResourceAsStream(filename);
+        StringBuilder resultStringBuilder = new StringBuilder();
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                resultStringBuilder.append(line).append("\n");
+            }
+        }
+        return resultStringBuilder.toString();
+    }
 
     // generate boolean array of prime numbers until max_size valued element
     public static boolean[] getPrimes(int max_size) {

@@ -2,14 +2,12 @@ package com.project.euler;
 
 import com.project.euler.utils.Utility;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.*;
 
 public class Q21_30 {
 
+    Utility utility = new Utility();
     public static void main(String[] args) throws IOException {
         Q21_30 q21_30 = new Q21_30();
 
@@ -49,8 +47,8 @@ public class Q21_30 {
     }
 
     private long problem22() throws IOException {
-        InputStream resource = getClass().getClassLoader().getResourceAsStream("p022_names.txt");
-        String[] input = readFromInputStream(resource).replace("\"", "").split(",");
+        String[] input = utility.readFromInputStream("p022_names.txt")
+                .replace("\"", "").split(",");
         Arrays.sort(input);
 
         long sum = 0;
@@ -64,17 +62,6 @@ public class Q21_30 {
         }
 
         return sum;
-    }
-
-    private String readFromInputStream(InputStream inputStream) throws IOException {
-        StringBuilder resultStringBuilder = new StringBuilder();
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                resultStringBuilder.append(line).append("\n");
-            }
-        }
-        return resultStringBuilder.toString();
     }
 
     private static long problem25() {
