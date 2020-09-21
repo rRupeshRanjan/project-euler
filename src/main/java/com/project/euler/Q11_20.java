@@ -2,7 +2,10 @@ package com.project.euler;
 
 import com.project.euler.utils.Utility;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.List;
 
 public class Q11_20 {
 
@@ -12,6 +15,7 @@ public class Q11_20 {
         System.out.println("Q13: " + problem13());
         System.out.println("Q15: " + problem15());
         System.out.println("Q16: " + problem16());
+        System.out.println("Q18: " + problem18());
         System.out.println("Q19: " + problem19());
         System.out.println("Q20: " + problem20());
 
@@ -233,6 +237,38 @@ public class Q11_20 {
                 .chars()
                 .map(Character::getNumericValue)
                 .sum();
+    }
+
+    private static int problem18() {
+        List<List<Integer>> list = Arrays.asList(
+                Arrays.asList(75),
+                Arrays.asList(95, 64),
+                Arrays.asList(17, 47, 82),
+                Arrays.asList(18, 35, 87, 10),
+                Arrays.asList(20, 4, 82, 47, 65),
+                Arrays.asList(19, 1, 23, 75, 3, 34),
+                Arrays.asList(88, 2, 77, 73, 7, 63, 67),
+                Arrays.asList(99, 65, 4, 28, 6, 16, 70, 92),
+                Arrays.asList(41, 41, 26, 56, 83, 40, 80, 70, 33),
+                Arrays.asList(41, 48, 72, 33, 47, 32, 37, 16, 94, 29),
+                Arrays.asList(53, 71, 44, 65, 25, 43, 91, 52, 97, 51, 14),
+                Arrays.asList(70, 11, 33, 28, 77, 73, 17, 78, 39, 68, 17, 57),
+                Arrays.asList(91, 71, 52, 38, 17, 14, 91, 43, 58, 50, 27, 29, 48),
+                Arrays.asList(63, 66, 4, 68, 89, 53, 67, 30, 73, 16, 69, 87, 40, 31),
+                Arrays.asList(4, 62, 98, 27, 23, 9, 70, 98, 73, 93, 38, 53, 60, 4, 23)
+        );
+
+        for(int i = list.size()-2; i>=0; i--) {
+            List<Integer> integers = list.get(i);
+            for(int j=0; j<=i; j++) {
+                int temp = list.get(i).get(j) + Math.max(list.get(i+1).get(j), list.get(i+1).get(j+1));
+                integers.set(j, temp);
+            }
+            list.set(i, integers);
+
+        }
+
+        return list.get(0).get(0);
     }
 
     private static int problem19() {
