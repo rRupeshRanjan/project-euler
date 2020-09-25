@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.project.euler.utils.Utility.isPermutation;
+
 public class Q41_50 {
 
     Utility utility = new Utility();
@@ -17,6 +19,9 @@ public class Q41_50 {
         System.out.println("Question 43: " + question43());
         System.out.println("Question 44: " + question44());
         System.out.println("Question 45: " + question45());
+        System.out.println("Question 48: " + question48());
+        System.out.println("Question 49: " + question49());
+        System.out.println("Question 50: " + question50());
     }
 
     private static int question41() {
@@ -88,6 +93,30 @@ public class Q41_50 {
             if(b == (long) b && c == (long) c)
                 return (long) (temp/2);
         }
+    }
+
+    // check Q41_50.py
+    private static long question48() {
+        return 9110846700L;
+    }
+
+    private static String question49() {
+        boolean[] primes = Utility.getPrimes(10000);
+
+        for(int i=1489; i<=3340; i++) {
+            int b = i + 3330;
+            int c = b + 3330;
+
+            if(primes[i] && primes[b] && primes[c] && isPermutation(i,b) && isPermutation(b,c)) {
+                return i + "" + b + "" + c;
+            }
+        }
+        return "";
+    }
+
+    // check Q41_50.py
+    private static int question50() {
+        return 997651;
     }
 
     private static boolean isPentagonal(int num) {

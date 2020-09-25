@@ -18,8 +18,6 @@ public class Q11_20 {
         System.out.println("Q18: " + problem18());
         System.out.println("Q19: " + problem19());
         System.out.println("Q20: " + problem20());
-
-        //TODO: problem 18
     }
 
     private static int problem11() {

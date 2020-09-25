@@ -181,4 +181,24 @@ public class Utility {
             }
         }
     }
+
+    public static boolean isPermutation(int a, int b) {
+        int[] count = new int[10];
+
+        while (a>0) {
+            count[a%10]++;
+            a/=10;
+        }
+
+        while (b>0) {
+            count[b%10]--;
+            b/=10;
+        }
+
+        for(int cnt: count) {
+            if(cnt!=0) return false;
+        }
+
+        return true;
+    }
 }
