@@ -69,7 +69,7 @@ public class Utility {
     }
 
     // add two numbers represented as stringbuilder. used for huge entries
-    public static StringBuilder sumDigits(StringBuilder sb, StringBuilder sb2) {
+    public static StringBuilder sumNumbers(StringBuilder sb, StringBuilder sb2) {
         int a = sb.length();
         int b = sb2.length();
 
@@ -204,7 +204,9 @@ public class Utility {
         return true;
     }
 
-    public static StringBuilder getReverse(StringBuilder sb) {
-        return sb.reverse();
+    public static int sumDigits(String n) {
+        return n.chars()
+                .map(c -> Character.getNumericValue((char) c))
+                .sum();
     }
 }

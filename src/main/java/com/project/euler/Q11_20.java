@@ -2,7 +2,6 @@ package com.project.euler;
 
 import com.project.euler.utils.Utility;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
@@ -292,7 +291,7 @@ public class Q11_20 {
             StringBuilder sb2;
             sb2 = Utility.multiplyByDigit(sb, i%10);
             if(i>=10)
-                sb2 = Utility.sumDigits(sb2, Utility.multiplyByDigit(sb, i/10).reverse().append(0).reverse());
+                sb2 = Utility.sumNumbers(sb2, Utility.multiplyByDigit(sb, i/10).reverse().append(0).reverse());
             sb = sb2;
         }
 

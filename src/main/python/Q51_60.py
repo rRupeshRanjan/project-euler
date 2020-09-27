@@ -17,14 +17,9 @@ def question56():
 def question57():
     c = 0
     num = den = 1
-    num_pow = den_pow = 10
     for k in range(1000):
         num, den = 2 * den + num, den + num
-        if num > num_pow:
-            num_pow *= 10
-        if den > den_pow:
-            den_pow *= 10
-        if num_pow > den_pow:
+        if len(str(num)) > len(str(den)):
             c += 1
 
     return c

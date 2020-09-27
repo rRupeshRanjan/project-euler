@@ -71,7 +71,7 @@ public class Q21_30 {
         while(b.length() < 1000) {
             index++;
             StringBuilder temp = b;
-            b = Utility.sumDigits(a, b);
+            b = Utility.sumNumbers(a, b);
             a = temp;
         }
 

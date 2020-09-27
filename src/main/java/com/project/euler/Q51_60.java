@@ -3,8 +3,6 @@ package com.project.euler;
 import com.project.euler.utils.Utility;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Q51_60 {
     public static void main(String[] args) throws IOException {
@@ -55,7 +53,7 @@ public class Q51_60 {
     private static boolean isLychrel(int n) {
         StringBuilder num = new StringBuilder(String.valueOf(n));
         for (int i = 0; i < 50; i++) {
-            num = Utility.sumDigits(num, new StringBuilder(num).reverse()).reverse();
+            num = Utility.sumNumbers(num, new StringBuilder(num).reverse()).reverse();
             if (Utility.isStringPalindrome(num.toString()))
                 return false;
         }
