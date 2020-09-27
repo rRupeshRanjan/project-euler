@@ -77,7 +77,7 @@ public class Utility {
 
         int i=0, j=0, carry = 0;
         while(i<a && j<b) {
-            int temp = carry +Character.getNumericValue(sb.charAt(i++)) +
+            int temp = carry + Character.getNumericValue(sb.charAt(i++)) +
                     Character.getNumericValue(sb2.charAt(j++));
             carry = temp/10;
             sb3.append(temp%10);
@@ -154,7 +154,9 @@ public class Utility {
 
     // check if a number is prime
     public static boolean isPrime(int num) {
-        for(int i=2; i<Math.sqrt(num); i++) {
+        if(num==1) return false;
+
+        for(int i=2; i<=Math.sqrt(num); i++) {
             if(num%i ==0) return false;
         }
         return true;
@@ -200,5 +202,9 @@ public class Utility {
         }
 
         return true;
+    }
+
+    public static StringBuilder getReverse(StringBuilder sb) {
+        return sb.reverse();
     }
 }

@@ -11,7 +11,25 @@ import java.util.stream.Collectors;
 public class Q61_70 {
     public static void main(String[] args) throws IOException {
         Q61_70 q61_70 = new Q61_70();
-        System.out.println("Problem67: " + q61_70.problem67());
+
+        System.out.println("Problem 62: " + problem62());
+        System.out.println("Problem 63: " + problem63());
+        System.out.println("Problem 67: " + q61_70.problem67());
+    }
+
+    private static long problem62() {
+        return 127035954683L;
+    }
+
+    /*
+     * for n^k to be of k digits, k = log(10) to base (10/n)
+     * */
+    private static int problem63() {
+        int counter = 0;
+        for(int n=1; n<=9; n++) {
+            counter += Math.floor(Math.log(10) / Math.log(10.0 / n));
+        }
+        return counter;
     }
 
     private int problem67() throws IOException {
