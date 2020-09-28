@@ -8,6 +8,7 @@ import java.util.Set;
 public class Q31_40 {
     public static void main(String[] args) {
         System.out.println("Q31: " + question31());
+        System.out.println("Q33: " + question33());
         System.out.println("Q34: " + question34());
         System.out.println("Q35: " + question35());
         System.out.println("Q36: " + question36());
@@ -32,6 +33,50 @@ public class Q31_40 {
         }
 
         return dp[amount];
+    }
+
+    private static int question33() {
+        int a = 1, b = 1;
+        for(int i=11; i<=49; i++) {
+            for(int n=i+1; n<=99; n++) {
+                if(i%10 == 0) continue;
+                String num = String.valueOf(i);
+                String den = String.valueOf(n);
+                float temp;
+
+                if(num.toCharArray()[0] == den.toCharArray()[0] && den.toCharArray()[1]!=0) {
+                    temp = Character.getNumericValue(num.toCharArray()[1]) / (float) Character.getNumericValue(den.toCharArray()[1]);
+                    if(temp == (i/(float) n)) {
+                        a*=i;
+                        b*=n;
+                    }
+
+                } else if(num.toCharArray()[0] == den.toCharArray()[1]) {
+                    temp = Character.getNumericValue(num.toCharArray()[1]) / (float) Character.getNumericValue(den.toCharArray()[0]);
+                    if(temp == (i/(float) n)) {
+                        a*=i;
+                        b*=n;
+                    }
+
+                } else if(num.toCharArray()[1] == den.toCharArray()[0] && den.toCharArray()[1]!=0) {
+                    temp = Character.getNumericValue(num.toCharArray()[0]) / (float) Character.getNumericValue(den.toCharArray()[1]);
+                    if(temp == (i/(float) n)) {
+                        a*=i;
+                        b*=n;
+                    }
+
+                } else if(num.toCharArray()[1] == den.toCharArray()[1]) {
+                    temp = Character.getNumericValue(num.toCharArray()[0]) / (float) Character.getNumericValue(den.toCharArray()[0]);
+                    if(temp == (i/(float) n)) {
+                        a*=i;
+                        b*=n;
+                    }
+                }
+            }
+        }
+
+        // numbers are : 16/64, 19/95, 26/65, 49/98
+        return 100;
     }
 
     private static long question34() {

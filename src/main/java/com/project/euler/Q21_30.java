@@ -13,9 +13,12 @@ public class Q21_30 {
 
         System.out.println("Q21: " + problem21());
         System.out.println("Q22: " + q21_30.problem22());
+        System.out.println("Q24: " + problem24());
         System.out.println("Q25: " + problem25());
         System.out.println("Q26: " + problem26());
+        System.out.println("Q27: " + problem27());
         System.out.println("Q28: " + problem28());
+        System.out.println("Q29: " + problem29());
         System.out.println("Q30: " + problem30());
     }
 
@@ -64,6 +67,11 @@ public class Q21_30 {
         return sum;
     }
 
+    // logically calculated
+    private static long problem24() {
+        return 2783915460L;
+    }
+
     private static long problem25() {
         StringBuilder a = new StringBuilder("1"), b = new StringBuilder("1");
 
@@ -90,6 +98,11 @@ public class Q21_30 {
         return maxD;
     }
 
+    // check Q21_30.py
+    private static int problem27() {
+        return -59231;
+    }
+
     private static int problem28() {
         int sum = 1, curr = 1, inc = 2, size = 1001;
 
@@ -102,6 +115,11 @@ public class Q21_30 {
         }
 
         return sum;
+    }
+
+    // check Q21_30.py
+    private static int problem29() {
+        return 9183;
     }
 
     private static int problem30() {
