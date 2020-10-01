@@ -132,7 +132,10 @@ public class Utility {
     }
 
     // check if 1 to 9 are all present in string
-    private static boolean isPanDigital(String s, int limit) {
+    public static boolean isPanDigital(String s, int limit) {
+        if(s.length() != 9)
+            return false;
+
         int[] count = new int[limit+1];
         for(char ch: s.toCharArray()) {
             count[ch-'0']++;
@@ -222,5 +225,10 @@ public class Utility {
         if (a > b) return gcd(a-b, b);
 
         return gcd(a, b-a);
+    }
+
+    public static boolean isPerfectSquare(int a) {
+        double sqrt = Math.sqrt(a);
+        return (int) sqrt == sqrt;
     }
 }

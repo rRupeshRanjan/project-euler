@@ -20,6 +20,7 @@ public class Q61_70 {
         System.out.println("Problem 64: " + problem64());
         System.out.println("Problem 65: " + problem65());
         System.out.println("Problem 67: " + q61_70.problem67());
+        System.out.println("Problem 69: " + problem69());
     }
 
     // check Q61_70.py
@@ -83,5 +84,13 @@ public class Q61_70 {
         }
 
         return nums.get(0).get(0);
+    }
+
+    private static int problem69() {
+        int n = 1, k = 0;
+        int[] primes = new int[]{2, 3, 5, 7, 11, 13, 17, 19, 21, 23, 29, 31};
+        while (primes[k] * n <= 1000000)
+            n*= primes[k++];
+        return n;
     }
 }

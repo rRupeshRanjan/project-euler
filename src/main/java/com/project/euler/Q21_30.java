@@ -67,23 +67,15 @@ public class Q21_30 {
         return sum;
     }
 
+
     // logically calculated
     private static long problem24() {
         return 2783915460L;
     }
 
-    private static long problem25() {
-        StringBuilder a = new StringBuilder("1"), b = new StringBuilder("1");
-
-        long index = 2;
-        while(b.length() < 1000) {
-            index++;
-            StringBuilder temp = b;
-            b = Utility.sumNumbers(a, b);
-            a = temp;
-        }
-
-        return index;
+    // fibonacci golden ratio formula and lemma for number of digits in "N"
+    private static int problem25() {
+        return (int) Math.ceil((999 + 0.5*Math.log10(5))/Math.log10(987/610.0));
     }
 
     private static int problem26() {

@@ -8,6 +8,7 @@ import java.util.Set;
 public class Q31_40 {
     public static void main(String[] args) {
         System.out.println("Q31: " + question31());
+        System.out.println("Q32: " + question32());
         System.out.println("Q33: " + question33());
         System.out.println("Q34: " + question34());
         System.out.println("Q35: " + question35());
@@ -33,6 +34,25 @@ public class Q31_40 {
         }
 
         return dp[amount];
+    }
+
+    private static long question32() {
+        Set<Integer> nums = new HashSet<>();
+        for(int i=1; i<=9; i++) {
+            for(int j =9876; j>=1234; j--) {
+                if(Utility.isPanDigital(i*j + "" + i + j, 9))
+                    nums.add(i * j);
+            }
+        }
+
+        for(int i=12; i<=98; i++) {
+            for(int j =987; j>=123; j--) {
+                if(Utility.isPanDigital(i*j + "" + i + "" + j, 9))
+                    nums.add(i * j);
+            }
+        }
+
+        return nums.stream().mapToInt(i->i).sum();
     }
 
     private static int question33() {

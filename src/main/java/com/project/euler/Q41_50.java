@@ -19,6 +19,8 @@ public class Q41_50 {
         System.out.println("Question 43: " + question43());
         System.out.println("Question 44: " + question44());
         System.out.println("Question 45: " + question45());
+        System.out.println("Question 46: " + question46());
+        System.out.println("Question 47: " + question47());
         System.out.println("Question 48: " + question48());
         System.out.println("Question 49: " + question49());
         System.out.println("Question 50: " + question50());
@@ -93,6 +95,40 @@ public class Q41_50 {
             if(b == (long) b && c == (long) c)
                 return (long) (temp/2);
         }
+    }
+
+    private static int question46() {
+        for(int n=9;;n+=2) {
+            if(Utility.isPrime(n)) continue;
+
+            boolean found = false;
+            for(int k=1; k*k<n/2; k++) {
+                if (Utility.isPrime(n - 2 * k * k)) {
+                    found = false;
+                    break;
+                } else
+                    found = true;
+            }
+
+            if(found) return n;
+        }
+    }
+
+    private static int question47() {
+        int count = 0;
+        int[] factorCount = new int[150001];
+        for(int i=2; i<=150000; i++) {
+            if(factorCount[i] == 4) {
+                count++;
+                if(count==4) return i-3;
+            } else {
+                count = 0;
+                if(factorCount[i] == 0)
+                    for(int j=i; j<=150000; j+=i)
+                        factorCount[j]++;
+            }
+        }
+        return -1;
     }
 
     // check Q41_50.py
