@@ -188,23 +188,7 @@ public class Utility {
     }
 
     public static boolean isPermutation(int a, int b) {
-        int[] count = new int[10];
-
-        while (a>0) {
-            count[a%10]++;
-            a/=10;
-        }
-
-        while (b>0) {
-            count[b%10]--;
-            b/=10;
-        }
-
-        for(int cnt: count) {
-            if(cnt!=0) return false;
-        }
-
-        return true;
+        return areNumbersPermutation(a, b);
     }
 
     public static int sumDigits(String n) {
@@ -230,5 +214,25 @@ public class Utility {
     public static boolean isPerfectSquare(int a) {
         double sqrt = Math.sqrt(a);
         return (int) sqrt == sqrt;
+    }
+
+    public static boolean areNumbersPermutation(long a, long b) {
+        Map<Long, Long> count = new HashMap<>();
+        while(a > 0) {
+            count.put(a%10, count.getOrDefault(a%10, 0L)+1);
+            a /= 10;
+        }
+
+        while(b > 0) {
+            count.put(b%10, count.getOrDefault(b%10, 0L)-1);
+            b /= 10;
+        }
+
+        for(long val: count.values()) {
+            if(val != 0)
+                return false;
+        }
+
+        return true;
     }
 }
