@@ -198,17 +198,23 @@ public class Utility {
     }
 
     public static int gcd(int a, int b) {
-        // Everything divides 0
-        if (a == 0) return b;
-        if (b == 0) return a;
+        int y, x;
 
-        // base case
-        if (a == b) return a;
+        if (a > b) {
+            x = a;
+            y = b;
+        } else {
+            x = b;
+            y = a;
+        }
 
-        // a is greater
-        if (a > b) return gcd(a-b, b);
+        while (x % y != 0) {
+            int temp = x;
+            x = y;
+            y = temp % x;
+        }
 
-        return gcd(a, b-a);
+        return y;
     }
 
     public static boolean isPerfectSquare(int a) {
