@@ -13,6 +13,7 @@ public class Q71_80 {
         System.out.println("Problem 71: " + problem71());
         System.out.println("Problem 72: " + problem72());
         System.out.println("Problem 73: " + problem73());
+        System.out.println("Problem 74: " + problem74());
         System.out.println("Problem 75: " + problem75());
         System.out.println("Problem 76: " + problem76());
         System.out.println("Problem 77: " + problem77());
@@ -64,6 +65,25 @@ public class Q71_80 {
             for (int n = d / a + 1; n < (d - 1) / b + 1; n++) {
                 if (Utility.gcd(n, d) == 1) result++;
             }
+        }
+
+        return result;
+    }
+
+    private static int problem74() {
+        int limit = 1000000;
+        int result = 0;
+
+        for(int i=1; i<=limit; i++) {
+            int temp = i;
+            Set<Integer> set = new HashSet<>();
+
+            while(!set.contains(temp)) {
+                set.add(temp);
+                temp = factorialSum(temp);
+            }
+
+            if(set.size() == 60) result++;
         }
 
         return result;
@@ -190,5 +210,17 @@ public class Q71_80 {
          * 9: 0
          * */
         return "73162890";
+    }
+
+    private static int factorialSum(int n) {
+        int[] factorials = {1,1, 2, 6, 24, 120, 720, 5040, 40320, 362880};
+        int temp = n;
+        int sum = 0;
+
+        while (temp > 0) {
+            sum += factorials[temp % 10];
+            temp /= 10;
+        }
+        return sum;
     }
 }

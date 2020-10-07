@@ -24,7 +24,8 @@ public class Utility {
     public static boolean[] getPrimes(int max_size) {
         boolean[] primes = new boolean[max_size];
         Arrays.fill(primes, true);
-
+        primes[0] = false;
+        primes[1] = false;
         for (int i = 2; i * i < max_size; i++) {
             if (primes[i]) {
                 for (int j = i * i; j < max_size; j += i)

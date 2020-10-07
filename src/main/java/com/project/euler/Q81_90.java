@@ -3,8 +3,7 @@ package com.project.euler;
 import com.project.euler.utils.Utility;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.PriorityQueue;
+import java.util.*;
 
 public class Q81_90 {
     public static void main(String[] args) throws IOException {
@@ -14,6 +13,7 @@ public class Q81_90 {
         System.out.println("Question 82: " + q81_90.problem82());
         System.out.println("Question 83: " + q81_90.problem83());
         System.out.println("Question 85: " + problem85());
+        System.out.println("Question 87: " + problem87());
     }
 
     private long problem81() throws IOException {
@@ -144,5 +144,31 @@ public class Q81_90 {
         }
 
         return nearestArea;
+    }
+
+    private static int problem87() {
+        long limit = 50000000;
+        HashSet<Double> result = new HashSet<>();
+        boolean[] primeBooleans = Utility.getPrimes(7071);
+        List<Integer> primes = new ArrayList<>();
+        for(int i=0; i<primeBooleans.length; i++) {
+            if(primeBooleans[i])
+                primes.add(i);
+        }
+
+        for (int i=0; i<primes.size(); i++) {
+            for (int j=0; j<73; j++) {
+                for (int k=0; k<23; k++) {
+                    double sum = Math.pow(primes.get(i), 2) +
+                            Math.pow(primes.get(j), 3) +
+                            Math.pow(primes.get(k), 4);
+
+                    if (sum < limit) result.add(sum);
+                    else break;
+                }
+            }
+        }
+
+        return result.size();
     }
 }

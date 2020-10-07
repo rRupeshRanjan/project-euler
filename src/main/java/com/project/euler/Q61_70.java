@@ -19,6 +19,7 @@ public class Q61_70 {
         System.out.println("Problem 63: " + problem63());
         System.out.println("Problem 64: " + problem64());
         System.out.println("Problem 65: " + problem65());
+        System.out.println("Problem 66: " + problem66());
         System.out.println("Problem 67: " + q61_70.problem67());
         System.out.println("Problem 69: " + problem69());
         System.out.println("Problem 70: " + problem70());
@@ -62,6 +63,60 @@ public class Q61_70 {
         BigInteger[] conv = Convergents.convergents(cf,NTERMS);
 
         return Utility.sumDigits(conv[0].toString());
+    }
+
+    private static int problem66() {
+        int result = 0;
+        BigInteger pmax = BigInteger.ZERO;
+
+        for(int D = 2; D <= 1000; D++){
+            BigInteger limit = BigInteger.valueOf((long) Math.sqrt(D));
+            if (limit.multiply(limit).equals(BigInteger.valueOf(D)))
+                continue;
+
+            BigInteger m = BigInteger.ZERO;
+            BigInteger d = BigInteger.ONE;
+            BigInteger a = limit;
+
+            BigInteger numm1 = BigInteger.ONE, num = a;
+            BigInteger denm1 = BigInteger.ZERO, den = BigInteger.ONE;
+
+            /*
+            * while(num*num - D*den*den != 1){
+        m = d * a - m;
+        d = (D - m * m) / d;
+        a = (limit + m) / d;
+
+        BigInteger numm2 = numm1;
+        numm1 = num;
+        BigInteger denm2 = denm1;
+        denm1 = den;
+
+        num = a*numm1 + numm2;
+        den = a*denm1 + denm2;
+    }
+    * */
+            while(!num.multiply(num).subtract(BigInteger.valueOf(D).multiply(den).multiply(den)).equals(BigInteger.ONE)){
+                m = d.multiply(a).subtract(m);
+                d = BigInteger.valueOf(D).subtract(m.multiply(m)).divide(d);
+                a = limit.add(m).divide(d);
+
+                BigInteger numm2 = numm1;
+                numm1 = num;
+                BigInteger denm2 = denm1;
+                denm1 = den;
+
+                num = a.multiply(numm1).add(numm2);
+                den = a.multiply(denm1).add(denm2);
+            }
+
+            if (num.compareTo(pmax) > 0) {
+                pmax = num;
+                result = D;
+            }
+        }
+
+        return result;
     }
 
     private int problem67() throws IOException {
