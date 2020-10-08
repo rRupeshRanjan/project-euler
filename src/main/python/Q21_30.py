@@ -1,6 +1,28 @@
 import utils.utility as util
 
 
+def question23():
+    M = 28124
+    d = [1] * M
+    d[0] = 0
+    for i in range(2, (M+1)//2):
+        for j in range(i*2, M, i):
+            d[j] += i
+    flags = [(d[i] > i) for i in range(M)]
+    abundants = [i for i in range(M) if d[i] > i]
+
+    s = M*(M-1)//2
+    for i in range(M):
+        m = i//2
+        for j in abundants:
+            if j > m:
+                break
+            if flags[i-j]:
+                s -= i
+                break
+    return s
+
+
 def question27():
     primes = [
         2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41,
@@ -43,5 +65,6 @@ def question29():
     return len(result)
 
 
+print(question23())
 print(question27())
 print(question29())

@@ -23,7 +23,7 @@ public class Q71_80 {
 
     private static long problem71() {
         int limit = 1000000;
-        long a = 3, b =7, r = 0, s =1, p =0;
+        long a = 3, b =7, r = 0, s =1, p;
 
         for(int q = limit; q>=2; q--) {
             p = (a*q - 1)/b;
