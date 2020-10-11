@@ -85,12 +85,15 @@ def problem171():
 
 
 def problem173():
-    M = 1000001
-    sieves = [0]*M
-    for n in range(2, int(math.sqrt(M))):
-        for m in range(n*(n+2), M, n*2): sieves[m] += 1
-
-    return sum(sieves[n] for n in range(4, M, 4))
+    tiles = 10**6
+	result = 0
+    # find how many n^2 - k^2 will be possible
+	for n in range(3, tiles // 4 + 2):  # Outer square length
+		for k in range(n - 2, 0, -2):  # Inner square length
+			if n * n - k * k > tiles:
+				break
+			result += 1
+	return result
 
 
 def problem401():
