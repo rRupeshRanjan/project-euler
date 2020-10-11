@@ -29,7 +29,7 @@ def problem104():
     phi = math.log10((sqrt5+1)/2)
     logsqrt5 = math.log10(sqrt5)
 
-    def valid_invalid_check(n):
+    def is_pandigital(n):
         if n < 100000000: return False
         flags = [0]*10
         flags[0] = 1
@@ -43,10 +43,10 @@ def problem104():
     while True:
         a, b, k = b, a+b, k+1
         a, b, k = b % M, (a+b)%M, k+1
-        if valid_invalid_check(b):
+        if is_pandigital(b):
             phik = phi*k-logsqrt5
             n = int(10**(phik-int(phi*k)+9))//10
-            if valid_invalid_check(n): break
+            if is_pandigital(n): break
     return k
 
 def problem106():
@@ -109,8 +109,9 @@ def problem109():
 
     return(s)
 
-print(problem101())
+
+# print(problem101())
 print(problem104())
-print(problem106())
+# print(problem106())
 print(problem108())
-print(problem109())
+# print(problem109())

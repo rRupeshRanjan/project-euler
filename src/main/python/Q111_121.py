@@ -84,8 +84,8 @@ def problem121():
 
 print(problem114())
 print(problem115())
-print(problem116())
-print(problem117())
+# print(problem116())
+# print(problem117())
 print(problem119())
 print(problem120())
-print(problem121())
+# print(problem121())
